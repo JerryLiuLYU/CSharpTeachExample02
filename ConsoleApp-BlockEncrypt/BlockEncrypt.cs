@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp_BlockEncrypt
 {
-    class BlockEncrypt
+    public class BlockEncrypt
     {
         private Matrix _matrix;
         public BlockEncrypt(Matrix matrix)
