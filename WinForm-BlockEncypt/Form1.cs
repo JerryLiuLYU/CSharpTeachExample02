@@ -14,6 +14,7 @@ namespace WinForm_BlockEncypt
     public partial class Form1 : Form
     {
         private Matrix mat;
+        private int step = 1;
         public Form1()
         {
             InitializeComponent();
@@ -29,21 +30,13 @@ namespace WinForm_BlockEncypt
             {
                 for (int j = 0; j < charmat.GetLength(1); j++)
                 {
-                    panel1.Controls.Add(new Label() { Font= new Font("YaHei", 20, FontStyle.Bold), BorderStyle= BorderStyle.Fixed3D, Text = charmat[i,j].ToString(), Height=50, Width = 50, Location = new Point(j * 50, i*50) });
+                    panel1.Controls.Add(new Label() { Name=string.Format("{0}-{1}",i,j), Font= new Font("YaHei", 20, FontStyle.Bold), BorderStyle= BorderStyle.Fixed3D, Text = charmat[i,j].ToString(), Height=50, Width = 50, Location = new Point(j * 50, i*50) });
                 }
             }
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {       
-
-            for (int i = 0; i < 10; i++)
-            {
-                panel1.Controls.Add(new Label() {Text=i.ToString(), Width=20, Location= new Point(i*20,0) });
-            }
-        }
 
         private void buttonEnCrypt_Click(object sender, EventArgs e)
         {
@@ -65,6 +58,44 @@ namespace WinForm_BlockEncypt
             }
             BlockEncrypt blockEncrypt = new BlockEncrypt(mat);
             textBoxResult.Text = blockEncrypt.Decrypt(textBoxOrg.Text);
+        }
+
+        private void buttonEncryptStep_Click(object sender, EventArgs e)
+        {
+            foreach (var item in panel1.Controls)
+            {
+                if (item is Label)
+                {
+                    (item as Label).BackColor = Color.Empty;
+                }
+            }
+            if (step <= textBoxOrg.Text.Length / 2)
+            {
+                BlockEncrypt blockEncrypt = new BlockEncrypt(mat);
+                Position position;
+                textBoxResult.Text += blockEncrypt.EncryptByStep(textBoxOrg.Text, step, out position);
+                var lA = panel1.Controls.Find(string.Format("{0}-{1}", position.rowIndexOfA, position.colIndexOfA), true);
+                var lA2 = panel1.Controls.Find(string.Format("{0}-{1}", position.rowIndexOfB, position.colIndexOfA), true);
+                var lB = panel1.Controls.Find(string.Format("{0}-{1}", position.rowIndexOfB, position.colIndexOfB), true);
+                var lB2 = panel1.Controls.Find(string.Format("{0}-{1}", position.rowIndexOfA, position.colIndexOfB), true);
+                (lA[0] as Label).BackColor = Color.Green;
+                (lB[0] as Label).BackColor = Color.Green;
+                (lA2[0] as Label).BackColor = Color.Yellow;
+                (lB2[0] as Label).BackColor = Color.Yellow;
+                step++;
+            }
+            else
+            {
+                if (textBoxResult.Text.Length == textBoxOrg.Text.Length-1)
+                {
+                    textBoxResult.Text += textBoxOrg.Text.Last();
+                }
+                else
+                {
+                    step = 1;
+                    textBoxResult.Text = "";
+                }
+            }
         }
     }
 }

@@ -30,12 +30,12 @@
         {
             this.buttonGenerateMat = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBoxOrg = new System.Windows.Forms.TextBox();
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.buttonEnCrypt = new System.Windows.Forms.Button();
             this.buttonDecrypt = new System.Windows.Forms.Button();
+            this.buttonEncryptStep = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonGenerateMat
@@ -55,16 +55,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(600, 400);
             this.panel1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(449, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "测试label的生成";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -111,17 +101,27 @@
             this.buttonDecrypt.UseVisualStyleBackColor = true;
             this.buttonDecrypt.Click += new System.EventHandler(this.buttonDecrypt_Click);
             // 
+            // buttonEncryptStep
+            // 
+            this.buttonEncryptStep.Location = new System.Drawing.Point(162, 557);
+            this.buttonEncryptStep.Name = "buttonEncryptStep";
+            this.buttonEncryptStep.Size = new System.Drawing.Size(75, 23);
+            this.buttonEncryptStep.TabIndex = 8;
+            this.buttonEncryptStep.Text = "加密一步";
+            this.buttonEncryptStep.UseVisualStyleBackColor = true;
+            this.buttonEncryptStep.Click += new System.EventHandler(this.buttonEncryptStep_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 687);
+            this.Controls.Add(this.buttonEncryptStep);
             this.Controls.Add(this.buttonDecrypt);
             this.Controls.Add(this.buttonEnCrypt);
             this.Controls.Add(this.textBoxResult);
             this.Controls.Add(this.textBoxOrg);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.buttonGenerateMat);
             this.Name = "Form1";
@@ -135,12 +135,12 @@
 
         private System.Windows.Forms.Button buttonGenerateMat;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBoxOrg;
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.Button buttonEnCrypt;
         private System.Windows.Forms.Button buttonDecrypt;
+        private System.Windows.Forms.Button buttonEncryptStep;
     }
 }
 
