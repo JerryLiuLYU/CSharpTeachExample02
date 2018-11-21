@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp_BlockEncrypt
 {
+    [Serializable]
     public class Matrix
     {
         private char[,] charMat;
@@ -61,9 +62,9 @@ namespace ConsoleApp_BlockEncrypt
 
         private void Shuffle(char[] array)
         {
-            for (int i = array.Length - 1; i > 0; i--)
-            {
-                Random rand = new Random();
+            Random rand = new Random();
+            for (int i = array.Length-1 ; i > 0; i--)
+            {                
                 int p = rand.Next(i);
                 char temp = array[p];
                 array[p] = array[i];
